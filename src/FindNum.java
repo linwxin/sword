@@ -1,6 +1,6 @@
 public class FindNum {
     public static void main(String []args) {
-        int[][] array = new int[3][4];
+        int[][] array = new int[10][10];
         int num = 1;
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[0].length; j++) {
@@ -13,16 +13,16 @@ public class FindNum {
             }
             System.out.println();
         }
-        System.out.println(Find(5, array))
+        System.out.println(Find(555, array));
     }
 
     public static boolean Find(int target, int [][] array) {
         int rowPre = 0;
-        int rowRear = array.length;
+        int rowRear = array.length - 1;
         int colPre = 0;
-        int colRear = array[0].length;
+        int colRear = array[0].length - 1;
         int targetRow = 0;
-        while (rowPre < rowRear) {
+        while (rowPre <= rowRear) {
             int rowMid = (rowPre + rowRear) / 2;
             if (target < array[rowMid][0]) {
                 rowRear = rowMid - 1;
@@ -36,7 +36,7 @@ public class FindNum {
             // 找到所在行
             if (target >= array[rowMid][0] && target <= array[rowMid][array[0].length - 1]){
                 targetRow = rowMid;
-                while (colPre < colRear) {
+                while (colPre <= colRear) {
                     int colMid = (colPre + colRear) / 2;
                     if (target == array[targetRow][colMid])
                         return true;
@@ -47,7 +47,6 @@ public class FindNum {
 
                 }
             }
-
         }
         return false;
     }
